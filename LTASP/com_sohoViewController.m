@@ -15,7 +15,6 @@
 @implementation com_sohoViewController
 
 @synthesize goButton;
-@synthesize outputText;
 @synthesize inputText;
 @synthesize inputLabel;
 @synthesize icLabel;

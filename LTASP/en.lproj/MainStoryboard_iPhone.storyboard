@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3081" systemVersion="12C3012" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2080"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Com soho View Controller-->
@@ -38,9 +38,6 @@
                             </label>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3w-QK-UX9">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="382" id="Kpp-dP-Vua"/>
-                                </constraints>
                             </webView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dereg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAv-hh-MJi">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -51,6 +48,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Q3w-QK-UX9" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="2rt-fu-dHz"/>
+                            <constraint firstAttribute="bottom" secondItem="Q3w-QK-UX9" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="3af-i7-XOn"/>
                             <constraint firstAttribute="trailing" secondItem="fZt-RZ-GUf" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="77F-ub-zde"/>
                             <constraint firstItem="ZAv-hh-MJi" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="157" id="8yr-4R-TBM"/>
                             <constraint firstItem="ZAv-hh-MJi" firstAttribute="baseline" secondItem="gF8-NT-Q8d" secondAttribute="baseline" type="user" id="Ks2-M2-ib9"/>
