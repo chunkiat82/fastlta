@@ -106,7 +106,7 @@
 
 
         NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
-        [dateFormatter1 setDateFormat:@"ddMMyyyy HH:ss"];
+        [dateFormatter1 setDateFormat:@"ddMMyyyy HH:mm"];
         dateString = [dateFormatter1 stringFromDate:MyTargetDateObject];
     
         self.detailDescriptionLabel.text = [NSString stringWithFormat:@"%@ %@ %@",icString,cpString,dateString ];

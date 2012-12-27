@@ -31,31 +31,58 @@
 - (void)loadDefaults
 {
     NSLog(@"Hello Awake loadDefaults");
-    
-    // Store the data
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *historyList = [defaults objectForKey:@"historyList"];
+
+    // Store the data
     if (!historyList){
-        historyList = [[NSMutableArray alloc] init];
-        [historyList addObject:@"S8207320E SKF7255Z"];
-        [self addHistory:@"S8207320E SKF7255Z"];
-        [historyList addObject:@"S0231591B SGV1982K"];
-        [self addHistory:@"S0231591B SGV1982K"];
+        //load the list
     }
-    
-    
-    
-    
+
     //need to create function to take in parameter and add to the list
     
 }
 
-- (void) addHistory:(NSString *)input{
+- (void) addToDB:(NSString *)input
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *historyList = [defaults objectForKey:@"historyList"];
+
+    if (!historyList){
+        historyList =  [[NSMutableArray alloc] init];
+        NSLog(@"Initializing Array");
+    }else{
+        historyList =  [[NSMutableArray alloc] initWithArray:historyList];
+    }
+    [historyList insertObject:input atIndex:0];
+    [defaults setObject:historyList forKey:@"historyList"];
+    [defaults synchronize];
+
+}
+- (void) addToHistory:(NSString *)input{
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
     [_objects insertObject:input atIndex:0];
+    [self addToDB:input];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1){
+        NSLog(@"Alert View dismissed with button at index %d",buttonIndex);
+        NSString *inputText = [alertView textFieldAtIndex:0].text;
+        NSLog(@"ssss %@",inputText);
+        [self addToHistory:inputText];
+        
+    }
+    else{
+        //DO NOTHING
+    }
+}
+
 
 - (void)viewDidLoad
 {
@@ -82,19 +109,18 @@
         _objects = [[NSMutableArray alloc] init];
     }
    
+
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"IC & CAR PLATE" message:@"Enter the message"
+                                            delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
+     
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+
     
-    NSDate *now = [NSDate date];
-    NSDateComponents *dc = [[NSDateComponents alloc] init];
-    [dc setMonth:1];
-    NSDate *MyTargetDateObject = [[NSCalendar currentCalendar] dateByAddingComponents:dc toDate:now options:0];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"ddMMyyyy HH:mm:ss"];
-    NSString *dateString = [dateFormatter stringFromDate:MyTargetDateObject];
-     NSString *value = [NSString stringWithFormat:@"S8207320E SKF7255Z %@",dateString];
-    
-    [_objects insertObject:value atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+   // NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+   // [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table View
@@ -128,6 +154,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [_objects removeObjectAtIndex:indexPath.row];
+        //TODO: EDIT FROM HISTORY
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

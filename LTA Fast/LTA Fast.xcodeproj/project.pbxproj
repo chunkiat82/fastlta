@@ -20,6 +20,10 @@
 		4DA8A4351683AFD4008D4B9B /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DA8A4331683AFD4008D4B9B /* MainStoryboard_iPad.storyboard */; };
 		4DA8A4381683AFD4008D4B9B /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8A4371683AFD4008D4B9B /* MasterViewController.m */; };
 		4DA8A43B1683AFD4008D4B9B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8A43A1683AFD4008D4B9B /* DetailViewController.m */; };
+		4DF714BD168C6BBB00A49B62 /* lta114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF714BC168C6BBB00A49B62 /* lta114.png */; };
+		4DF714C0168C6BBE00A49B62 /* lta57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF714BF168C6BBE00A49B62 /* lta57.png */; };
+		4DF714C2168C6BC200A49B62 /* lta144.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF714C1168C6BC200A49B62 /* lta144.png */; };
+		4DF714C4168C6BC600A49B62 /* lta72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF714C3168C6BC600A49B62 /* lta72.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		4DA8A4371683AFD4008D4B9B /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		4DA8A4391683AFD4008D4B9B /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		4DA8A43A1683AFD4008D4B9B /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		4DF714BC168C6BBB00A49B62 /* lta114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lta114.png; sourceTree = "<group>"; };
+		4DF714BF168C6BBE00A49B62 /* lta57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lta57.png; sourceTree = "<group>"; };
+		4DF714C1168C6BC200A49B62 /* lta144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lta144.png; sourceTree = "<group>"; };
+		4DF714C3168C6BC600A49B62 /* lta72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lta72.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,10 @@
 		4DA8A4091683AFD4008D4B9B = {
 			isa = PBXGroup;
 			children = (
+				4DF714C3168C6BC600A49B62 /* lta72.png */,
+				4DF714C1168C6BC200A49B62 /* lta144.png */,
+				4DF714BF168C6BBE00A49B62 /* lta57.png */,
+				4DF714BC168C6BBB00A49B62 /* lta114.png */,
 				4DA8A41E1683AFD4008D4B9B /* LTA Fast */,
 				4DA8A4171683AFD4008D4B9B /* Frameworks */,
 				4DA8A4151683AFD4008D4B9B /* Products */,
@@ -172,6 +184,10 @@
 				4DA8A42F1683AFD4008D4B9B /* Default-568h@2x.png in Resources */,
 				4DA8A4321683AFD4008D4B9B /* MainStoryboard_iPhone.storyboard in Resources */,
 				4DA8A4351683AFD4008D4B9B /* MainStoryboard_iPad.storyboard in Resources */,
+				4DF714BD168C6BBB00A49B62 /* lta114.png in Resources */,
+				4DF714C0168C6BBE00A49B62 /* lta57.png in Resources */,
+				4DF714C2168C6BC200A49B62 /* lta144.png in Resources */,
+				4DF714C4168C6BC600A49B62 /* lta72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +328,7 @@
 				4DA8A4401683AFD4008D4B9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
