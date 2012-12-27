@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1290133F167F0A5C00663A5B /* LTASP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTASP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1290133F167F0A5C00663A5B /* Fast LTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast LTA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12901343167F0A5C00663A5B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		12901345167F0A5C00663A5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		12901347167F0A5C00663A5B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -99,7 +99,7 @@
 		12901340167F0A5C00663A5B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1290133F167F0A5C00663A5B /* LTASP.app */,
+				1290133F167F0A5C00663A5B /* Fast LTA.app */,
 				12901369167F0A5C00663A5B /* LTASPTests.octest */,
 			);
 			name = Products;
@@ -180,7 +180,7 @@
 			);
 			name = "Fast LTA";
 			productName = LTASP;
-			productReference = 1290133F167F0A5C00663A5B /* LTASP.app */;
+			productReference = 1290133F167F0A5C00663A5B /* Fast LTA.app */;
 			productType = "com.apple.product-type.application";
 		};
 		12901368167F0A5C00663A5B /* LTASPTests */ = {
