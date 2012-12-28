@@ -45,7 +45,9 @@
             NSString *cpString = @"";
             
             NSString *inputText= [self.detailItem description];
-            NSString *string = [inputText stringByReplacingOccurrencesOfString:@" " withString:@""];
+            
+            //disable whitespace removal
+            NSString *string = [inputText stringByReplacingOccurrencesOfString:@"" withString:@""];
             
             NSError *error = NULL;
             NSRegularExpression *numberPlateRegex = [NSRegularExpression regularExpressionWithPattern:@"[Ss]*[A-Za-z]{2}[0-9]{1,4}[A-Za-z][dD]*" options:NSRegularExpressionCaseInsensitive error:&error];
@@ -113,11 +115,12 @@
             NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
             [dateFormatter1 setDateFormat:@"ddMMyyyy HH:mm"];
             dateString = [dateFormatter1 stringFromDate:MyTargetDateObject];
-            self.detailDescriptionLabel.text = [NSString stringWithFormat:@"%@ %@ %@",icString,cpString,dateString ];
-            [self withHtml:stripped withInput:inputText withInfo:self.detailDescriptionLabel.text];
+//            self.detailDescriptionLabel.text = [NSString stringWithFormat:@"%@ %@ %@",icString,cpString,dateString ];
+            self.navItem.title = [self.detailItem description];
+            [self withHtml:stripped withInput:inputText withInfo:[NSString stringWithFormat:@"%@ %@ %@",icString,cpString,dateString ]];
         }
         else{
-            self.detailDescriptionLabel.text = [self.detailItem description];
+            self.navItem.title = [self.detailItem description];
             [self.detailWebView loadHTMLString:storeHtml baseURL:nil];
         }
 

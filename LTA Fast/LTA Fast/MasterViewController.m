@@ -92,18 +92,58 @@
     }
     [historyList removeObjectsInArray:discardedItems];
     [defaults setObject:historyList forKey:@"historyList"];
+    [defaults removeObjectForKey:temp];
     [defaults synchronize];
     [_objects removeObjectAtIndex:index];
 }
 
+- (NSString *) infoExtract:(NSString *)input{
+    NSString *output =@"";
 
+    NSString *icString = @"";
+    NSString *cpString = @"";
+
+    NSString *inputText= input;
+    
+    //disable whitespace removal
+    NSString *string = [inputText stringByReplacingOccurrencesOfString:@"" withString:@""];
+
+    NSError *error = NULL;
+    NSRegularExpression *numberPlateRegex = [NSRegularExpression regularExpressionWithPattern:@"[SsEu][A-Za-z]{0,2}[0-9]{1,4}[A-Za-z][dD]*" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSRegularExpression *icRegex = [NSRegularExpression regularExpressionWithPattern:@"[SsGg][0-9]{7}[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    //NUMBER PLATE EXTRACTION
+    NSRange numberPlate = [numberPlateRegex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
+    if (!NSEqualRanges(numberPlate, NSMakeRange(NSNotFound, 0))) {
+
+        NSString *substringForFirstMatch = [string substringWithRange:numberPlate];
+        cpString=[substringForFirstMatch uppercaseString];
+        //NSLog(@"%@", substringForFirstMatch);
+
+    }
+
+    //IC EXTRACTION
+    NSRange icNumber = [icRegex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
+    if (!NSEqualRanges(icNumber, NSMakeRange(NSNotFound, 0))) {
+
+        NSString *substringForFirstMatch = [string substringWithRange:icNumber];
+        icString=[substringForFirstMatch uppercaseString];
+        //NSLog(@"%@", substringForFirstMatch);
+
+    }
+    output = [output stringByAppendingString:icString];
+    output = [output stringByAppendingString:@" "];
+    output = [output stringByAppendingString:cpString];
+    return output;
+}
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1){
         NSLog(@"Alert View dismissed with button at index %d",buttonIndex);
         NSString *inputText = [alertView textFieldAtIndex:0].text;
         NSLog(@"Storing %@",inputText);
-        [self addToDB:inputText];
+        NSLog(@"Extraction %@",[self infoExtract:inputText]);
+        [self addToDB:[self infoExtract:inputText]];
         
     }
     else{
