@@ -23,20 +23,23 @@
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     }
-    
     [self loadDefaults];
     [super awakeFromNib];
 }
 
 - (void)loadDefaults
 {
-    NSLog(@"Hello Awake loadDefaults");
+   
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *historyList = [defaults objectForKey:@"historyList"];
 
-    // Store the data
-    if (!historyList){
-        //load the list
+    // load the data
+    if (historyList){
+        NSLog(@"load loadDefaults");
+        for (NSString *object in [historyList reverseObjectEnumerator]) {
+            NSLog(@"String %@",object);
+            [self addToHistory:object];
+        }
     }
 
     //need to create function to take in parameter and add to the list
@@ -54,28 +57,53 @@
     }else{
         historyList =  [[NSMutableArray alloc] initWithArray:historyList];
     }
+    NSLog(@"AddToDB %@",input);
+
     [historyList insertObject:input atIndex:0];
     [defaults setObject:historyList forKey:@"historyList"];
     [defaults synchronize];
+    
+    [self addToHistory:input];
 
 }
 - (void) addToHistory:(NSString *)input{
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
-    [_objects insertObject:input atIndex:0];
-    [self addToDB:input];
+    [_objects insertObject:input atIndex:0];    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
+
+-(void)removeObjectAtIndex:(NSUInteger)index{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *historyList = [defaults objectForKey:@"historyList"];
+    NSString *temp = _objects[index];
+    
+    NSMutableArray *discardedItems = [NSMutableArray array];    
+    historyList =  [[NSMutableArray alloc] initWithArray:historyList];
+     if (historyList){
+        for (NSString *item in historyList) {
+            NSLog(@"String %@",item);
+            if([item isEqual:temp]){
+                [discardedItems addObject:item];
+            }
+        }
+    }
+    [historyList removeObjectsInArray:discardedItems];
+    [defaults setObject:historyList forKey:@"historyList"];
+    [defaults synchronize];
+    [_objects removeObjectAtIndex:index];
+}
+
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1){
         NSLog(@"Alert View dismissed with button at index %d",buttonIndex);
         NSString *inputText = [alertView textFieldAtIndex:0].text;
-        NSLog(@"ssss %@",inputText);
-        [self addToHistory:inputText];
+        NSLog(@"Storing %@",inputText);
+        [self addToDB:inputText];
         
     }
     else{
@@ -153,7 +181,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
+        //[_objects removeObjectAtIndex:indexPath.row];        
+        [self removeObjectAtIndex:indexPath.row];
         //TODO: EDIT FROM HISTORY
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
